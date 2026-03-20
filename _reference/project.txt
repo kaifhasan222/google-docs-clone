@@ -1,0 +1,77 @@
+Subject: Technical Assignment – Mini Google Docs Clone (Next.js + TypeScript)
+Assignment Title: Mini Google Docs Clone
+Estimated Time: 6–8 hours
+Level: Medium
+
+Objective
+Build a simplified collaborative document editor similar to Google Docs using the following technologies:
+Next.js (App Router)
+TypeScript
+Firebase or Supabase (for authentication and real-time features)
+Plate.js (for rich text editing) - https://platejs.org/
+
+Core Requirements
+1. Authentication
+Implement login/signup functionality (email/password or OAuth)
+Maintain user session
+2. Document Management
+Create a new document
+View list of documents (user-specific or public)
+Open and edit a document
+Delete a document
+Each document should include:
+Title
+Content (Plate.js JSON format)
+Created and updated timestamps
+Associated user
+3. Rich Text Editor
+Integrate Plate.js editor
+Support:
+Bold, Italic, Underline
+Headings
+Bullet and numbered lists
+Basic formatting toolbar
+4. Auto-Save
+Implement auto-save with a debounce of 2–3 seconds
+Display save status (e.g., "Saving…" / "Saved")
+5. Real-Time Collaboration
+Allow multiple users to access the same document
+Reflect changes in near real-time
+You may use Firebase Firestore listeners or Supabase Realtime
+A simple sync approach is sufficient (no need for CRDT/OT implementation)
+6. (Optional) Presence Indicator
+Display active users editing the document, or show active user count
+
+UI Expectations
+Clean and intuitive editor interface
+Sidebar for document listing
+Top bar displaying document title
+Responsive layout
+You may use UI libraries such as Material UI, ShadCN, or Radix UI.
+
+Technical Expectations
+Well-structured Next.js project using App Router
+Strong TypeScript usage
+Clear separation of concerns (components, hooks, services, etc.)
+Reusable and maintainable code
+
+Optional Enhancements (Bonus)
+Share document via link
+Role-based access (viewer/editor)
+Basic version history
+Dark mode support
+
+Deliverables
+GitHub repository link
+Host it to vercel 
+README file including:
+Setup instructions
+Tech stack decisions
+Any assumptions or trade-offs
+
+Evaluation Criteria
+Code quality and project structure
+Integration and use of Plate.js
+Real-time functionality
+User experience and UI clarity
+Performance considerations (e.g., debounce, efficient rendering)
