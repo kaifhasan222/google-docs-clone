@@ -142,15 +142,17 @@ export function ShareButton({ documentId, isPublic: initialPublic, isOwner, owne
 
   return (
     <Dialog open={showPanel} onOpenChange={setShowPanel}>
-      <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          size="sm"
-          className="gap-2 rounded-full border bg-background text-xs shadow-sm"
-        >
-          <Share2 className="h-3.5 w-3.5" />
-          Share
-        </Button>
+      <DialogTrigger
+        render={
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-2 rounded-full border bg-background text-xs shadow-sm"
+          />
+        }
+      >
+        <Share2 className="h-3.5 w-3.5" />
+        Share
       </DialogTrigger>
 
       <DialogContent className="max-h-[85vh] max-w-[calc(100%-1.5rem)] overflow-hidden rounded-[1.5rem] p-0 sm:max-w-[34rem]" showCloseButton>
