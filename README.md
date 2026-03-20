@@ -21,6 +21,7 @@ A collaborative document editor built with Next.js App Router, TypeScript, Supab
 - Share by link
 - Role-based access for viewer/editor flows
 - Responsive dashboard and editor UI
+- Dark mode support
 
 ## Tech Stack
 
