@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mini Google Docs Clone
 
-## Getting Started
+A collaborative document editor built with Next.js App Router, TypeScript, Supabase, and Plate.js.
 
-First, run the development server:
+## Implemented Features
+
+- Email/password authentication with Supabase Auth
+- Persistent user session
+- Create, open, list, and delete documents
+- Rich text editing with Plate.js
+- Formatting toolbar with:
+  - Bold
+  - Italic
+  - Underline
+  - Headings
+  - Bullet lists
+  - Numbered lists
+- Auto-save with debounce and save status feedback
+- Near real-time document sync with Supabase realtime listeners
+- Presence indicator for active editors
+- Share by link
+- Role-based access for viewer/editor flows
+- Responsive dashboard and editor UI
+
+## Tech Stack
+
+- Next.js 16.2.0 with App Router
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Supabase
+  - Auth
+  - Postgres
+  - Realtime
+- Plate.js rich text editor
+- Base UI and Lucide React for UI primitives/icons
+
+## Setup
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Create `.env.local`:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+3. Create the required Supabase tables and policies:
+
+- `documents`
+- `document_collaborators`
+- `document_access_requests`
+
+4. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is intended to be deployed on Vercel.
 
-## Learn More
+Required environment variables on Vercel:
 
-To learn more about Next.js, take a look at the following resources:
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Decisions
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Next.js App Router keeps page structure, layouts, and server/client boundaries clear.
+- Supabase covers authentication, database storage, and realtime sync in one backend.
+- Plate.js was chosen for structured rich text editing with extensible plugins.
+- Debounced auto-save avoids excessive writes while keeping the editor responsive.
+- The collaboration model uses simple realtime updates instead of CRDT/OT because the assignment explicitly allows a simpler sync approach.
 
-## Deploy on Vercel
+## Assumptions And Trade-Offs
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Realtime collaboration is implemented as a practical near real-time sync layer, not full conflict-free collaborative editing.
+- Presence is lightweight and intended to satisfy the optional requirement without adding complex session orchestration.
+- Sharing and collaborator access are implemented as assignment bonus features.
+- The project currently assumes Supabase schema and RLS are configured correctly before local run or deployment.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+
+- If you are using Next.js 16 conventions strictly, `middleware` should be migrated to `proxy` in a follow-up cleanup.
